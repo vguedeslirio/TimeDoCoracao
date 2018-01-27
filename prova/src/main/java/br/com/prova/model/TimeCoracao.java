@@ -4,14 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 public class TimeCoracao implements Serializable {
@@ -27,7 +24,7 @@ public class TimeCoracao implements Serializable {
     @OneToMany(mappedBy="timeCoracao", cascade=CascadeType.REFRESH, fetch=FetchType.EAGER)
 	private List<Campanha> campanhas;
 
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "timeCoracao")
+	@OneToMany(mappedBy = "timeCoracao", cascade = CascadeType.REFRESH)
 	private List<Torcedor> torcedores;
 	
 	public TimeCoracao() {

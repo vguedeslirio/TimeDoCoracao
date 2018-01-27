@@ -11,14 +11,18 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.prova.config.AppConfig;
 import br.com.prova.model.Campanha;
 import br.com.prova.model.TimeCoracao;
 
-@RunWith(SpringRunner.class)
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {AppConfig.class})
 @DataJpaTest
-public class CampanhaRepositoryTests {
+public class RepositorysTests {
 
 	@Autowired
 	private TestEntityManager entityManager;
