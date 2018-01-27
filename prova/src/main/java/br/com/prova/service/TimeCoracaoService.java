@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.prova.model.Campanha;
 import br.com.prova.model.TimeCoracao;
 import br.com.prova.repository.TimeCoracaoRepository;
 
