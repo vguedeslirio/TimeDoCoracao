@@ -1,5 +1,6 @@
 package br.com.prova.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -13,8 +14,10 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Torcedor {
+public class Torcedor implements Serializable{
 	
+	private static final long serialVersionUID = -860855554830947986L;
+
 	@Id
 	@GeneratedValue
 	@Column(name = "id_torcedor")
@@ -29,7 +32,6 @@ public class Torcedor {
 	private Date dataNascimento;
 
 	@ManyToOne(cascade= CascadeType.MERGE)
-    @JoinColumn(name = "id_time_coracao")
 	private TimeCoracao timeCoracao;
 
 	/**

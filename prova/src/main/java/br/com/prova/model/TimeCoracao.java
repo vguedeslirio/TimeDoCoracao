@@ -1,31 +1,34 @@
 package br.com.prova.model;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.Table;
 
 @Entity
-public class TimeCoracao {
+public class TimeCoracao implements Serializable {
+
+	private static final long serialVersionUID = -6433112997947048971L;
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id_time_coracao")
 	private Long idTimeCoracao;
 
 	private String nome;
 
-	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "timeCoracao")
-	private Collection<Campanha> campanhas;
+    @OneToMany(mappedBy="timeCoracao", cascade=CascadeType.REFRESH, fetch=FetchType.EAGER)
+	private List<Campanha> campanhas;
 
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "timeCoracao")
-	private Collection<Torcedor> torcedores;
+	private List<Torcedor> torcedores;
 	
 	public TimeCoracao() {
 		super();
@@ -35,7 +38,7 @@ public class TimeCoracao {
 		super();
 		this.nome = nome;
 	}
-
+	
 	/**
 	 * @return the idTimeCoracao
 	 */
@@ -64,32 +67,30 @@ public class TimeCoracao {
 		this.nome = nome;
 	}
 
-	/**
-	 * @return the campanhas
-	 */
-	public Collection<Campanha> getCampanhas() {
-		return campanhas;
-	}
 
-	/**
-	 * @param campanhas the campanhas to set
-	 */
-	public void setCampanhas(Collection<Campanha> campanhas) {
-		this.campanhas = campanhas;
+	public List<Campanha> getCampanhas() {
+		return campanhas;
 	}
 
 	/**
 	 * @return the torcedores
 	 */
-	public Collection<Torcedor> getTorcedores() {
+	public List<Torcedor> getTorcedores() {
 		return torcedores;
 	}
 
 	/**
 	 * @param torcedores the torcedores to set
 	 */
-	public void setTorcedores(Collection<Torcedor> torcedores) {
+	public void setTorcedores(List<Torcedor> torcedores) {
 		this.torcedores = torcedores;
+	}
+
+	/**
+	 * @param campanhas the campanhas to set
+	 */
+	public void setCampanhas(List<Campanha> campanhas) {
+		this.campanhas = campanhas;
 	}
 
 }
